@@ -1,0 +1,22 @@
+//
+   Created by ayaz on 13/9/15.
+
+extends ../layout
+block content
+    h1.
+        #{title}
+    form#formAddBlob(name="addblob",method="post",action="/blobs")
+        p Name:
+            input#inputName(type="text", placeholder="ex. John Smith", name="name")
+        p Phone:
+            input#inputPhone(type="text", placeholder="ex. 123456", name="phone")
+        p Locality:
+            input#inputLocality(type="text", placeholder="ex. Jaynagar 4th Blk", name="locality")
+        p DOB:
+            input#inputDob(type="date", name="dob")
+        p Enrollment Date:
+            input#inputDob(type="date", name="enrollment")
+        p Is verified?:
+            input#inputIsLoved(type="checkbox", name="isVerified")
+        p
+            button#btnSubmit(type="submit") submit

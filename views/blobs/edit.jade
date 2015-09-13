@@ -1,0 +1,27 @@
+//
+   Created by ayaz on 13/9/15.
+extends ../layout
+block content
+    h1.
+        Blob ID #{blob._id}
+    form(action='/blobs/#{blob._id}/edit',method='post',name='updateblob',enctype='application/x-www-form-urlencoded')
+        p Name:
+            input#inputName(type='text', value='#{blob.name}', name='name')
+        p Address:
+            input#inputAddress(type='text', value='#{blob.address}', name='address')
+        p Categories:
+            input#inputCategories(type='text', value='#{blob.categories}', name='categories')
+        p Phone:
+            input#inputPhone(type='text', value='#{blob.phone}', name='phone')
+        p DOB:
+            input#inputDob(type='date', value='#{blob.dob}', name='dob')
+        p Locality:
+            input#inputLocality(type='locality', value='#{blob.locality}', name='locality')
+        p Is Verified?:
+            input#inputIsVerified(type='checkbox', name='isVerified', checked=('#{blob.isVerified}' === 'true' ? "checked" : undefined))
+        p
+            input(type='hidden',value='PUT',name='_method')
+        p
+            button#btnSubmit(type='submit').
+                Update
+
