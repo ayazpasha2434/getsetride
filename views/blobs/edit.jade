@@ -2,26 +2,37 @@
    Created by ayaz on 13/9/15.
 extends ../layout
 block content
-    h1.
-        Blob ID #{blob._id}
-    form(action='/blobs/#{blob._id}/edit',method='post',name='updateblob',enctype='application/x-www-form-urlencoded')
-        p Name:
-            input#inputName(type='text', value='#{blob.name}', name='name')
-        p Address:
-            input#inputAddress(type='text', value='#{blob.address}', name='address')
-        p Categories:
-            input#inputCategories(type='text', value='#{blob.categories}', name='categories')
-        p Phone:
-            input#inputPhone(type='text', value='#{blob.phone}', name='phone')
-        p DOB:
-            input#inputDob(type='date', value='#{blob.dob}', name='dob')
-        p Locality:
-            input#inputLocality(type='locality', value='#{blob.locality}', name='locality')
-        p Is Verified?:
-            input#inputIsVerified(type='checkbox', name='isVerified', checked=('#{blob.isVerified}' === 'true' ? "checked" : undefined))
-        p
+    form.form-horizontal(action='/blobs/#{blob._id}/edit',method='post',name='updateblob',enctype='application/x-www-form-urlencoded')
+        .form-group
+            label.col-sm-2.control-label(for='inputName') Name:
+            .col-sm-10
+                input#inputName.form-control(type='text', value='#{blob.name}', name='name')
+        .form-group
+            label.col-sm-2.control-label(for='inputAddress') Address:
+            .col-sm-10
+                textarea#inputAddress.form-control(type='text', value='#{blob.address}', name='address' rows=3)
+        .form-group
+            label.col-sm-2.control-label(for='inputCategories') Categories:
+            .col-sm-10
+                input#inputCategories.form-control(type='text', value='#{blob.categories}', name='categories')
+        .form-group
+            label.col-sm-2.control-label(for='inputPhone') Phone:
+            .col-sm-10
+                input#inputPhone.form-control(type='text', value='#{blob.phone}', name='phone')
+        .form-group
+            label.col-sm-2.control-label(for='inputDob') DOB:
+            .col-sm-10
+                input#inputDob.form-control(type='date', value='#{blob.dob}', name='dob')
+        .form-group
+            label.col-sm-2.control-label(for='inputLocality') Locality:
+            .col-sm-10
+                input#inputLocality.form-control(type='locality', value='#{blob.locality}', name='locality')
+        .form-group
+            label.col-sm-2.control-label(for='inputName') Is Verified?:
+            .col-sm-10
+                .checkbox
+                    input#inputIsVerified(type='checkbox', name='isVerified', checked=('#{blob.isVerified}' === 'true' ? "checked" : undefined))
             input(type='hidden',value='PUT',name='_method')
-        p
-            button#btnSubmit(type='submit').
-                Update
-
+        .form-group
+            .col-sm-offset-2.col-sm-10
+                button#btnSubmit.btn.btn-primary.btn-lg(type='submit') Update

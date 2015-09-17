@@ -60,7 +60,7 @@ router.route('/')
         });*/
 
 
-        res.locals.createPagination = function (pages, page) {
+        /*res.locals.createPagination = function (pages, page) {
             var url = require('url')
                 , qs = require('querystring')
                 , params = qs.parse(url.parse(req.url).query)
@@ -92,7 +92,31 @@ router.route('/')
                 str += 'Last'
 
             return str
+        }*/
+
+        res.locals.createPagination = function (pages, page) {
+            var url = require('url')
+                , qs = require('querystring')
+                , params = qs.parse(url.parse(req.url).query)
+                , str = ''
+
+            console.log(page+ " " + JSON.stringify(req.params));
+            params.page = 0
+            var clas = page == 0 ? "active" : "disabled"
+            str += '<li class="disabled"><a href="?'+qs.stringify(params)+'" aria-label="Previous"><span aria-hidden="true">&laquo</span></a></li>'
+            for (var p = 0; p < pages; p++) {
+                var pg = parseInt(p, 10) + 1;
+                params.page = p
+                clas = page == p ? "active" : "disabled"
+                str += '<li class="'+clas+'"><a href="?'+qs.stringify(params)+'">'+ pg +'<span class="sr-only">(current)</span></a></li>'
+            }
+            params.page = --p
+            clas = page == params.page ? "active" : "disabled"
+            str += '<li class="disabled"><a href="?'+qs.stringify(params)+'" aria-label="Next"><span aria-hidden="true">&raquo</span></a></li>'
+
+            return str
         }
+
     })
     //POST a new blob
     .post(function(req, res) {
