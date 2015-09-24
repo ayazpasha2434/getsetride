@@ -1,0 +1,29 @@
+//
+   Created by ayaz on 13/9/15.
+extends layout
+block customers
+    h1.
+        #{title}
+
+    .col-xs-12.col-md-8
+        .alert.alert-success(role='alert')
+            |Successfully updated the details!
+        table.table.table-striped.table-hover
+            tr
+                td Name
+                td= blob.name
+            tr
+                td Address
+                td= blob.address
+            tr
+                td Phone
+                td= blob.phone
+            tr
+                td Locality
+                td= blob.locality
+            tr
+                td Is Verified?
+                td= blob.isVerified
+            tr
+                td Is Phone Verified?
+                td= blob.isPhoneVerified

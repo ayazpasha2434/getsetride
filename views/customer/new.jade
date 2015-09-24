@@ -1,0 +1,35 @@
+//
+   Created by ayaz on 13/9/15.
+extends layout
+block customers
+    form#formAddBlob.form-horizontal(action='/customers',method='post',name='addblob',enctype='application/x-www-form-urlencoded')
+        .form-group
+            label.col-sm-2.control-label(for='inputName') Name:
+            .col-sm-6
+                input#inputName.form-control(type='text', placeholder="ex. John Smith", name='name')
+        .form-group
+            label.col-sm-2.control-label(for='inputAddress') Address:
+            .col-sm-6
+                textarea#inputAddress.form-control(type='text', placeholder="ex. Street, Locality, City - Pin, State, Country", name='address' rows=3)
+        .form-group
+            label.col-sm-2.control-label(for='inputPhone') Phone:
+            .col-sm-6
+                input#inputPhone.form-control(type='text', placeholder="ex. 9988776655", name='phone')
+        .form-group
+            label.col-sm-2.control-label(for='inputLocality') Locality:
+            .col-sm-6
+                input#inputLocality.form-control(type='locality', placeholder="ex. Basavangudi", name='locality')
+        .form-group
+            label.col-sm-2.control-label(for='inputName') Is Verified?:
+            .col-sm-6
+                .checkbox
+                    input#inputIsVerified(type='checkbox', name='isVerified')
+        .form-group
+            label.col-sm-2.control-label(for='inputName') Phone Verified?:
+            .col-sm-6
+                .checkbox
+                    input#inputIsVerified(type='checkbox', name='isPhoneVerified')
+        .form-actions
+            .col-sm-offset-2.col-sm-6
+                button#btnSubmit.btn.btn-primary.btn-space(type='submit') Add
+                button#btnCancel.btn.btn-default.btn-space(type='button') Cancel

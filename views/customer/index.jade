@@ -1,0 +1,40 @@
+extends layout
+
+block customers
+    h1.
+        #{title}
+    table.table.table-striped.table-hover
+        thead
+            tr
+                th #
+                th Name
+                th Address
+                th Phone
+                th Locality
+                th Verified
+                th Ph. Verified
+        tbody
+            each blob, i in blobs
+                if blob.isVerified
+                    tr.success
+                        td= 40 * page + (i + 1)
+                        td
+                            a(href="/customers/" + blob._id + "/edit")= blob.name
+                        td= blob.address
+                        td= blob.phone
+                        td= blob.locality
+                        td= blob.isVerified
+                        td= blob.isPhoneVerified
+                else
+                    tr
+                        td= 20 * page + (i + 1)
+                        td
+                            a(href="/customers/" + blob._id + "/edit")= blob.name
+                        td= blob.address
+                        td= blob.phone
+                        td= blob.locality
+                        td= blob.isVerified
+                        td= blob.isPhoneVerified
+    if (pages > 1)
+        ul.pagination
+            != createPagination(pages, page)
