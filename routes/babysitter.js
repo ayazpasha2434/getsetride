@@ -167,7 +167,7 @@ router.get('/new', function(req, res) {
 });
 
 // route middleware to validate :id
-router.param('id', function(req, res, next, id) {
+/*router.param('id', function(req, res, next, id) {
     //console.log('validating ' + id + ' exists');
     //find the ID in the Database
     mongoose.model('Blob').findById(id, function (err, blob) {
@@ -224,7 +224,7 @@ router.route('/:id')
             }
         });
     });
-
+ */
 //GET the individual blob by Mongo ID
 router.get('/:id/edit', function(req, res) {
     //search for the blob within Mongo
@@ -344,6 +344,391 @@ router.get('/link1', function(req, res) {
 router.get('/link2', function(req, res) {
 
     res.render('/babysitter/link2');
+});
+
+function addBabySitterToMongo(id, city, params, callback) {
+
+    var contactperson = params.contactperson;
+    var name = params.name;
+    var email = params.email;
+    var mobile = params.mobile;
+    var tollfree = params.tollfree;
+    var contact = params.contact;
+    var fax = params.fax;
+    var website = params.website;
+    var latitude = params.companyGeocodes ? params.companyGeocodes.split(',')[0] : params.complat;
+    var longitude = params.companyGeocodes ? params.companyGeocodes.split(',')[1] : params.complong;
+    var mappointer = params.mappointer;
+    var comprating = params.comprating;
+    var rating = params.rating;
+    var HoursOfOperation = params.HoursOfOperation;
+    var Catalogue = params.Catalogue;
+    var videoUrl = params.videoUrl;
+    var overallRatingsChart = params.overallRatingsChart;
+    var ratingsOverTimeChart = params.ratingsOverTimeChart;
+    var paymentModes = params.paymentModes;
+    var alsoListedIn = params.alsoListedIn;
+    var totalReviews = params.totalReviews;
+    var Reviews = params.Reviews;
+    var services = params.services;
+    var YOE = params.YOE;
+    var rateThis = params.rateThis;
+    var bd_detailshow = params.bd_detailshow;
+    var alsolist_counts = params.alsolist_counts;
+    var totJdReviews = params.totJdReviews;
+    var guarantee = params.guarantee;
+    var verified = params.verified;
+    var building = params.building;
+    var street = params.street;
+    var area = params.area;
+    var pincode = params.pincode;
+    var VNumber = params.VNumber;
+    var paidStatus = params.paidStatus;
+    var fratings = params.fratings;
+    var myratings = params.myratings;
+    var vertical_data = params.vertical_data;
+    var price_range = params.price_range == "undefined" ? 0 : params.price_range;
+    var other_city_num = params.other_city_num;
+    var sharedt_url = params.sharedt_url;
+    var Sharerating = params.Sharerating;
+    var closeddown_flag = params.closeddown_flag;
+    var price_tag_d = params.price_tag_d;
+    var IsDeal = params.IsDeal;
+    var docId = params.docId;
+    var address = params.address;
+    var categories = params.categories;
+    var landmark = params.landmark;
+    var an = params.an;
+    var city = city;
+    var myRatings = params.myRatings;
+    var thumbnail = params.thumbnail;
+    var isVerified = params.isVerified;
+    var isPhoneVerified = params.isPhoneVerified;
+    var isAddressVerified = params.isAddressVerified;
+    var businessModel = params.businessModel;
+    var charges = params.charges;
+    var phone = params.phone;
+    var locality = params.locality;
+
+    //call the create function for our database
+    mongoose.model('Blob').create({
+        _id: id,
+        contactperson: contactperson,
+        name: name,
+        email: email,
+        mobile: mobile,
+        tollfree: tollfree,
+        contact: contact,
+        fax: fax,
+        website: website,
+        complat: latitude,
+        complong: longitude,
+        mappointer: mappointer,
+        comprating: comprating,
+        rating: rating,
+        HoursOfOperation: HoursOfOperation,
+        Catalogue: Catalogue,
+        videoUrl: videoUrl,
+        overallRatingsChart: overallRatingsChart,
+        ratingsOverTimeChart: ratingsOverTimeChart,
+        paymentModes: paymentModes,
+        alsoListedIn: alsoListedIn,
+        totalReviews: totalReviews,
+        Reviews: Reviews,
+        services: services,
+        YOE: YOE,
+        rateThis: rateThis,
+        bd_detailshow: bd_detailshow,
+        alsolist_counts: alsolist_counts,
+        totJdReviews: totJdReviews,
+        guarantee: guarantee,
+        verified: verified,
+        building: building,
+        street: street,
+        area: area,
+        pincode: pincode,
+        VNumber: VNumber,
+        paidStatus: paidStatus,
+        fratings: fratings,
+        myratings: myratings,
+        vertical_data: vertical_data,
+        price_range: price_range,
+        other_city_num: other_city_num,
+        sharedt_url: sharedt_url,
+        Sharerating: Sharerating,
+        closeddown_flag: closeddown_flag,
+        price_tag_d: price_tag_d,
+        IsDeal: IsDeal,
+        docId: id,
+        address: address,
+        categories: categories,
+        landmark: landmark,
+        an: an,
+        city: city,
+        myRatings: myRatings,
+        thumbnail: thumbnail,
+        isVerified: isVerified,
+        isPhoneVerified: isPhoneVerified,
+        isAddressVerified: isAddressVerified,
+        businessModel: businessModel,
+        charges: charges,
+        phone: phone,
+        locality: locality
+    }, function (err, blob) {
+        if (err) {
+            callback(err, "There was a problem adding the information to the database.");
+        } else {
+            //Blob has been created
+            //console.log('POST creating new blob: ' + blob);
+            callback(null, "Successfully added the information to the database.");
+        }
+    })
+}
+
+function updateBabySitterToMongo(id, params, callback) {
+
+    var contactperson = params.contactperson;
+    var name = params.name;
+    var email = params.email;
+    var mobile = params.mobile;
+    var tollfree = params.tollfree;
+    var contact = params.contact;
+    var fax = params.fax;
+    var website = params.website;
+    var latitude = params.companyGeocodes ? params.companyGeocodes.split(',')[0] : params.complat;
+    var longitude = params.companyGeocodes ? params.companyGeocodes.split(',')[1] : params.complong;
+    var mappointer = params.mappointer;
+    var comprating = params.comprating;
+    var rating = params.rating;
+    var HoursOfOperation = params.HoursOfOperation;
+    var Catalogue = params.Catalogue;
+    var videoUrl = params.videoUrl;
+    var overallRatingsChart = params.overallRatingsChart;
+    var ratingsOverTimeChart = params.ratingsOverTimeChart;
+    var paymentModes = params.paymentModes;
+    var alsoListedIn = params.alsoListedIn;
+    var totalReviews = params.totalReviews;
+    var Reviews = params.Reviews;
+    var services = params.services;
+    var YOE = params.YOE;
+    var rateThis = params.rateThis;
+    var bd_detailshow = params.bd_detailshow;
+    var alsolist_counts = params.alsolist_counts;
+    var totJdReviews = params.totJdReviews;
+    var guarantee = params.guarantee;
+    var verified = params.verified;
+    var building = params.building;
+    var street = params.street;
+    var area = params.area;
+    var pincode = params.pincode;
+    var VNumber = params.VNumber;
+    var paidStatus = params.paidStatus;
+    var fratings = params.fratings;
+    var myratings = params.myratings;
+    var vertical_data = params.vertical_data;
+    var price_range = params.price_range;
+    var other_city_num = params.other_city_num;
+    var sharedt_url = params.sharedt_url;
+    var Sharerating = params.Sharerating;
+    var closeddown_flag = params.closeddown_flag;
+    var price_tag_d = params.price_tag_d;
+    var IsDeal = params.IsDeal;
+    var docId = params.docId;
+    var address = params.address;
+    var categories = params.categories;
+    var landmark = params.landmark;
+    var an = params.an;
+    var city = params.city;
+    var myRatings = params.myRatings;
+    var thumbnail = params.thumbnail;
+    var isVerified = params.isVerified;
+    var isPhoneVerified = params.isPhoneVerified;
+    var isAddressVerified = params.isAddressVerified;
+    var businessModel = params.businessModel;
+    var charges = params.charges;
+    var phone = params.phone;
+    var locality = params.locality;
+
+    mongoose.model('Blob').findById(id, function (err, blob) {
+        //update it
+        blob.update({
+            contactperson: contactperson,
+            name: name,
+            email: email,
+            mobile: mobile,
+            tollfree: tollfree,
+            contact: contact,
+            fax: fax,
+            website: website,
+            complat: latitude,
+            complong: longitude,
+            mappointer: mappointer,
+            comprating: comprating,
+            rating: rating,
+            HoursOfOperation: HoursOfOperation,
+            Catalogue: Catalogue,
+            videoUrl: videoUrl,
+            overallRatingsChart: overallRatingsChart,
+            ratingsOverTimeChart: ratingsOverTimeChart,
+            paymentModes: paymentModes,
+            alsoListedIn: alsoListedIn,
+            totalReviews: totalReviews,
+            Reviews: Reviews,
+            services: services,
+            YOE: YOE,
+            rateThis: rateThis,
+            bd_detailshow: bd_detailshow,
+            alsolist_counts: alsolist_counts,
+            totJdReviews: totJdReviews,
+            guarantee: guarantee,
+            verified: verified,
+            building: building,
+            street: street,
+            area: area,
+            pincode: pincode,
+            VNumber: VNumber,
+            paidStatus: paidStatus,
+            fratings: fratings,
+            myratings: myratings,
+            vertical_data: vertical_data,
+            price_range: price_range,
+            other_city_num: other_city_num,
+            sharedt_url: sharedt_url,
+            Sharerating: Sharerating,
+            closeddown_flag: closeddown_flag,
+            price_tag_d: price_tag_d,
+            IsDeal: IsDeal,
+            docId: docId,
+            address: address,
+            categories: categories,
+            landmark: landmark,
+            an: an,
+            city: city,
+            myRatings: myRatings,
+            thumbnail: thumbnail,
+            isVerified: isVerified,
+            isPhoneVerified: isPhoneVerified,
+            isAddressVerified: isAddressVerified,
+            businessModel: businessModel,
+            charges: charges,
+            phone: phone,
+            locality: locality
+        }, function (err, id) {
+            if (err) {
+                console.log("There was a problem updating the information to the database: " + err);
+            }
+        })
+    });
+}
+
+router.get('/importData', function(req, res) {
+
+    var request = require('request');
+
+    var city_list = ["Ahmedabad","Baroda","Bhavnagar","Bhopal","Gwalior","Indore","Jabalpur",
+        "Jamnagar","Rajkot","Surat","Raipur","Hubli Dharwad","Mangalore","Mysore",
+        "Ambala","Amritsar","Chandigarh","Dehradun","Jalandhar","Ludhiana","Shimla",
+        "Coimbatore","Madurai","Kochi","Kozhikode","Tiruchirappalli",
+        "Allahabad","Kanpur","Lucknow","Agra","Mathura","Varanasi","Hyderabad","Vijayawada",
+        "Visakhapatnam","Ajmer","Jaipur","Jodhpur","Kota","Udaipur","Mumbai","East","Bhubaneshwar",
+        "Guwahati","Jamshedpur","Kolkata","Patna","Ranchi","Aurangabad","Nagpur","Nashik","Pune","Solapur", "Bangalore",
+        "Chennai", "Delhi"
+    ];
+
+    function getBabySitters(city, fCallback) {
+
+        require('async').forEach([1,2,3,4,5,6,7,8,9,10], function(item, callb) {
+
+            request('http://t.justdial.com/india_api_read/26june2015/searchziva.php?city='+ city +'&state=&case=spcall&stype=category_list&search=Day%20Care%20Centres&docid=1000687732&rnd1=0.92378&rnd2=0.00741&rnd3=0.48715&basedon=&nearme=&wap=2&login_mobile=&moviedate=2015-10-23&mvbksrc=tp%2Cpvr%2Ccinemax%2Cfc&max=50&pg_no='+item, function(err, response, body) {
+
+                if(!err) {
+
+                    try {
+
+                        var resp = JSON.parse(body);
+
+                        if(resp) {
+
+                            var results = resp.results || [];
+
+                            require('async').forEach(results, function(babysitter, callback) {
+
+                                console.log(''+babysitter.docId);
+
+                                var docId = babysitter.docId;
+                                var city = babysitter.city;
+
+                                request('http://t.justdial.com/india_api_read/26june2015/searchziva.php?docid='+ docId +'&case=detail', function(err, response, body) {
+
+                                    try {
+
+                                        var sitter = JSON.parse(body);
+
+                                        if(sitter) {
+
+                                            addBabySitterToMongo(docId, city, sitter.results, function(err, msg) {
+
+                                                if(err) {
+
+                                                    //console.log(msg + ':' + err)
+                                                }
+
+                                                callback;
+
+                                            });
+
+                                        }
+                                    } catch (e) {
+
+                                        console.log(e + ' ' + body);
+                                        callback;
+                                    }
+
+
+
+                                });
+
+                            }, function(err) {
+
+                                callb;
+
+                            });
+
+                        } else {
+                            console.log('Improper response: '+ resp);
+
+                        }
+                    } catch(e) {
+                        callb;
+                    }
+
+                } else {
+
+                    console.log(err);
+                }
+
+            });
+
+        }, function(err) {
+
+            fCallback;
+        });
+    }
+
+    function finalCallback(err) {
+
+        if(!err) {
+
+            console.log('Error: '+err);
+        } else {
+            console.log('Done!');
+            res.send('Done!');
+        }
+
+    }
+
+    require('async').forEach(city_list, getBabySitters, finalCallback);
+
 });
 
 module.exports = router;
