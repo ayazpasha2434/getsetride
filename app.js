@@ -8,8 +8,8 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
-var blobs = require('./routes/babysitter');
-var customers = require('./routes/customer');
+var order = require('./routes/order');
+//var rider = require('./routes/rider');
 var reviews = require('./routes/review');
 var sittings = require('./routes/sitting');
 
@@ -30,12 +30,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 
-app.use('/babysitters', blobs);
-app.use('/customers', customers);
+app.use('/order', order);
+//app.use('/rider', rider);
 app.use('/reviews', reviews);
 app.use('/sittings', sittings);
-
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -67,6 +65,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
 
 module.exports = app;

@@ -10,8 +10,95 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/css/bootstrap.min.css')
     link(rel='stylesheet', href='/css/4-col-portfolio.css')
+    link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css')
     script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
     script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
     script(src='/js/jquery.js')
     script(src='/js/bootstrap.min.js')
+    script(src='//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js')
+    script.
+      var dataArr = {
+        'Sujith': '9738166982',
+        'Nataraj': '9019522827',
+        'Vijay Kumar': '8553516229',
+        'Nandeesh Kumar': '8884445138',
+        'Nanda kumar': '8553959190',
+        'Murali': '8884445133',
+        'Krishniah': '9880600695',
+        'Gowtham M': '8549095337',
+        'karthik': '8197793140'
+      };
+
+      var data = [
+        { id: 'Sujith', text: 'Sujith' },
+        { id: 'Nataraj', text: 'Nataraj' },
+        { id: 'Vijay Kumar', text: 'Vijay Kumar' },
+        { id: 'Nandeesh Kumar', text: 'Nandeesh Kumar' },
+        { id: 'Nanda kumar', text: 'Nanda kumar' },
+        { id: 'Murali', text: 'Murali' },
+        { id: 'Krishniah', text: 'Krishniah' },
+        { id: 'Gowtham M', text: 'Gowtham M' },
+        { id: 'karthik', text: 'karthik'}
+      ];
+
+      $(document).ready(function () {
+
+        $(".inputRiderName").select2({
+          data: data,
+          placeholder: "Select a Rider",
+          allowClear: true
+        })
+
+        $(".inputRiderName").val('#{rider_name}').trigger("change");
+
+        var $eventSelect = $(".inputRiderName");
+
+        $eventSelect.on("select2:open", function (e) {
+          log("select2:open", e);
+        });
+
+        $eventSelect.on("select2:close", function (e) {
+          log("select2:close", e);
+        });
+
+        $eventSelect.on("select2:select", function (e) {
+          log("select2:select", e);
+
+          $('#inputRiderNumber').val(dataArr[$('.inputRiderName').val()]);
+        });
+
+        $eventSelect.on("select2:unselect", function (e) {
+          log("select2:unselect", e);
+        });
+
+        $eventSelect.on("change", function (e) {
+          console.log('change');
+          log("change");
+        });
+
+        console.log('sample');
+
+        function log(name, evt) {
+          //console.log('-> '+JSON.stringify(evt));
+
+          if (!evt) {
+            var args = "{}";
+          } else {
+            var args = JSON.stringify(evt.params, function (key, value) {
+              //console.log(key + '->' +value);
+              if (value && value.nodeName) { console.log(value); return "[DOM node]"; }
+              if (value instanceof $.Event) { console.log(value); return "[$.Event]"; }
+
+              return value;
+            });
+          }
+        }
+
+        $('#btnCancel').click(function(){
+          parent.history.back();
+          return false;
+        });
+
+      });
+
   block content

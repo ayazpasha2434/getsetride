@@ -196,7 +196,7 @@ router.get('/new', function(req, res) {
             }
         });
     });
-
+*/
 router.route('/:id')
     .get(function(req, res) {
         mongoose.model('Blob').findById(req.id, function (err, blob) {
@@ -224,7 +224,7 @@ router.route('/:id')
             }
         });
     });
- */
+
 //GET the individual blob by Mongo ID
 router.get('/:id/edit', function(req, res) {
     //search for the blob within Mongo

@@ -3,5 +3,5 @@
  */
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/babysitter');
+mongoose.connect('mongodb://localhost/getsetride');
 
