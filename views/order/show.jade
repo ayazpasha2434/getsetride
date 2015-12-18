@@ -1,0 +1,45 @@
+//Created by ayaz on 13/9/15.
+extends layout
+block orders
+    h1.
+        #{title}
+    .col-xs-12.col-md-8
+        .alert.alert-success(role='alert')
+            | Successfully updated the order!
+        table.table.table-striped.table-hover
+            tr
+                td Date
+                td= order.date
+            tr
+                td Job ID
+                td= order.job_id
+            tr
+                td Customer Name
+                td= order.customer_name
+            tr
+                td Address
+                td= order.address
+            tr
+                td Phone Number
+                td= order.phone_number
+            tr
+                td Delivery Timing
+                td= order.delivery_timing
+            tr
+                td Hub Name
+                td= order.hub_name
+            tr
+                td Rider Name
+                td= order.rider_name
+            tr
+                td Rider Number
+                td= order.rider_number
+            tr
+                td Order Status
+                td= order.order_status
+            tr
+                td Trip Distance
+                td= order.trip_distance
+            tr
+                td Remarks
+                td= order.remarks

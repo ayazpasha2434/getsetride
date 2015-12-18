@@ -1,0 +1,56 @@
+//Created by ayaz on 13/9/15.
+extends layout
+block orders
+    form#formAddOrder.form-horizontal(action='/order',method='post',name='addorder',enctype='application/x-www-form-urlencoded')
+        .form-group
+            label.col-sm-2.control-label(for='inputDate') Date:
+            .col-sm-6
+                input#inputDob.form-control(type='date', placeholder="ex. in format mm/dd/yyyy", name='date')
+        .form-group
+            label.col-sm-2.control-label(for='inputJobId') Job ID:
+            .col-sm-6
+                input#inputName.form-control(type='text', placeholder="435432", name='job_id')
+        .form-group
+            label.col-sm-2.control-label(for='inputCustomerName') Customer Name:
+            .col-sm-6
+                input#inputCustomerName.form-control(type='text', placeholder="ex. Akash Aggarwal", name='customer_name')
+        .form-group
+            label.col-sm-2.control-label(for='inputPhoneNumber') Phone Number:
+            .col-sm-6
+                input#inputPhoneNumber.form-control(type='text', placeholder="ex. 9988776655", name='phone_number')
+        .form-group
+            label.col-sm-2.control-label(for='inputAddress') Address:
+            .col-sm-6
+                textarea#inputAddress.form-control(type='text', placeholder="ex. Street, Locality, City - Pin, State, Country", name='address' rows=3)
+        .form-group
+            label.col-sm-2.control-label(for='inputDeliveryTiming') Delivery Timing:
+            .col-sm-6
+                input#inputDeliveryTiming.form-control(type='text', placeholder="ex. 10:00 AM", name='delivery_timing')
+        .form-group
+            label.col-sm-2.control-label(for='inputHubName') Hub Name:
+            .col-sm-6
+                input#inputHubName.form-control(type='text', placeholder="ex. JP Nagar", name='hub_name')
+        .form-group
+            label.col-sm-2.control-label(for='inputRiderName') Rider Name:
+            .col-sm-6
+                select#inputRiderName.inputRiderName.form-control
+        .form-group
+            label.col-sm-2.control-label(for='inputRiderNumber') Rider Number:
+            .col-sm-6
+                input#inputRiderNumber.form-control(type='text', placeholder="ex. 8899778877", name='rider_number', readonly='')
+        .form-group
+            label.col-sm-2.control-label(for='inputOrderStatus') Order Status:
+            .col-sm-6
+                input#inputOrderStatus.form-control(type='text', placeholder="ex. Done", name='order_status')
+        .form-group
+            label.col-sm-2.control-label(for='inputTripDistance') Trip Distance:
+            .col-sm-6
+                input#inputTripDistance.form-control(type='text', placeholder="10", name='trip_distance')
+        .form-group
+            label.col-sm-2.control-label(for='inputRemarks') Remarks:
+            .col-sm-6
+                textarea#inputRemarks.form-control(type='text', placeholder="ex. Customer not responding", name='remarks' rows=3)
+        .form-actions
+            .col-sm-offset-2.col-sm-6
+                button#btnSubmit.btn.btn-primary.btn-space(type='submit') Add
+                button#btnCancel.btn.btn-default.btn-space(type='button') Cancel

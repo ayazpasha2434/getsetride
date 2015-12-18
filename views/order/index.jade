@@ -1,0 +1,69 @@
+extends layout
+block orders
+    h1.
+        #{title}
+    table.table.table-striped.table-hover
+        thead
+            tr
+                th #
+                th Date
+                th Job ID
+                th Customer Name
+                th Phone Number
+                th Delivery Timing
+                th Hub Name
+                th Rider Name
+                th Rider Number
+                th Order Status
+                th Trip Distance
+                th Remarks
+        tbody
+            each order, i in orders
+                if order.order_status == 'Done' || order.order_status == 'done'
+                    tr.success
+                        td= 40 * page + (i + 1)
+                        td= order.date
+                        td
+                            a(href="/order/" + order._id + "/edit")= order.job_id
+                        td= order.customer_name
+                        td= order.phone_number
+                        td= order.delivery_timing
+                        td= order.hub_name
+                        td= order.rider_name
+                        td= order.rider_number
+                        td= order.order_status
+                        td= order.trip_distance
+                        td= order.remarks
+                else if order.order_status == 'Cancelled' || order.order_status == 'cancelled' || order.order_status == 'canceled'
+                    tr.danger
+                        td= 40 * page + (i + 1)
+                        td= order.date
+                        td
+                            a(href="/order/" + order._id + "/edit")= order.job_id
+                        td= order.customer_name
+                        td= order.phone_number
+                        td= order.delivery_timing
+                        td= order.hub_name
+                        td= order.rider_name
+                        td= order.rider_number
+                        td= order.order_status
+                        td= order.trip_distance
+                        td= order.remarks
+                else
+                    tr
+                        td= 20 * page + (i + 1)
+                        td= order.date
+                        td
+                            a(href="/order/" + order._id + "/edit")= order.job_id
+                        td= order.customer_name
+                        td= order.phone_number
+                        td= order.delivery_timing
+                        td= order.hub_name
+                        td= order.rider_name
+                        td= order.rider_number
+                        td= order.order_status
+                        td= order.trip_distance
+                        td= order.remarks
+    if (pages > 1)
+        ul.pagination
+            != createPagination(pages, page)

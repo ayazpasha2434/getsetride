@@ -1,0 +1,39 @@
+//
+   Created by ayaz on 13/9/15.
+extends layout
+block babysitters
+    form.form-horizontal(action='/babysitters/#{blob._id}/edit',method='post',name='updateblob',enctype='application/x-www-form-urlencoded')
+        .form-group
+            label.col-sm-2.control-label(for='inputName') Name:
+            .col-sm-6
+                input#inputName.form-control(type='text', value='#{blob.name}', name='name')
+        .form-group
+            label.col-sm-2.control-label(for='inputAddress') Address:
+            .col-sm-6
+                textarea#inputAddress.form-control(type='text', name='address' rows=3)= blob.address
+        .form-group
+            label.col-sm-2.control-label(for='inputCategories') Categories:
+            .col-sm-6
+                input#inputCategories.form-control(type='text', value='#{blob.categories}', name='categories')
+        .form-group
+            label.col-sm-2.control-label(for='inputPhone') Phone:
+            .col-sm-6
+                input#inputPhone.form-control(type='text', value='#{blob.phone}', name='phone')
+        .form-group
+            label.col-sm-2.control-label(for='inputDob') DOB:
+            .col-sm-6
+                input#inputDob.form-control(type='date', name='dob')= blob.dob
+        .form-group
+            label.col-sm-2.control-label(for='inputLocality') Locality:
+            .col-sm-6
+                input#inputLocality.form-control(type='locality', value='#{blob.locality}', name='locality')
+        .form-group
+            label.col-sm-2.control-label(for='inputName') Is Verified?:
+            .col-sm-6
+                .checkbox
+                    input#inputIsVerified(type='checkbox', name='isVerified', checked=('#{blob.isVerified}' === 'true' ? "checked" : undefined))
+            input(type='hidden',value='PUT',name='_method')
+        .form-actions
+            .col-sm-offset-2.col-sm-6
+                button#btnSubmit.btn.btn-primary.btn-space(type='submit') Update
+                button#btnCancel.btn.btn-default.btn-space(type='button', onclick='goBack') Cancel

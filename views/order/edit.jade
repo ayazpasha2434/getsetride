@@ -1,0 +1,54 @@
+//
+   Created by ayaz on 13/9/15.
+
+extends layout
+block orders
+    form.form-horizontal(action='/order/#{order._id}/edit',method='post',name='updateorder',enctype='application/x-www-form-urlencoded')
+        .form-group
+            label.col-sm-2.control-label(for='inputDate') Date:
+            .col-sm-6
+                input#inputDate.form-control(type='text', value='#{order.date}', name='date')
+        .form-group
+            label.col-sm-2.control-label(for='inputJobId') Job Id:
+            .col-sm-6
+                input#inputName.form-control(type='text', value='#{order.job_id}', name='job_id')
+        .form-group
+            label.col-sm-2.control-label(for='inputCustomerName') Customer Name:
+            .col-sm-6
+                input#inputCustomerName.form-control(type='text', value='#{order.customer_name}', name='customer_name')
+        .form-group
+            label.col-sm-2.control-label(for='inputPhoneNumber') Phone Number:
+            .col-sm-6
+                input#inputPhoneNumber.form-control(type='text', value='#{order.phone_number}', name='phone_number')
+        .form-group
+            label.col-sm-2.control-label(for='inputDeliveryTiming') Phone:
+            .col-sm-6
+                input#inputDeliveryTiming.form-control(type='text', value='#{order.delivery_timing}', name='delivery_timing')
+        .form-group
+            label.col-sm-2.control-label(for='inputHubName') Hub Name:
+            .col-sm-6
+                input#inputHubName.form-control(type='text', value='#{order.hub_name}', name='hub_name')
+        .form-group
+            label.col-sm-2.control-label(for='inputRiderName') Rider Name:
+            .col-sm-6
+                select#inputRiderName.inputRiderName.form-control(type='text', value='#{order.rider_name}', name='rider_name')
+        .form-group
+            label.col-sm-2.control-label(for='inputRiderNumber') Rider Number:
+            .col-sm-6
+                input#inputRiderNumber.form-control(type='text', value='#{order.rider_number}', name='rider_number', readonly='')
+        .form-group
+            label.col-sm-2.control-label(for='inputOrderStatus') Order Status:
+            .col-sm-6
+                input#inputOrderStatus.form-control(type='text', value='#{order.order_status}', name='order_status')
+        .form-group
+            label.col-sm-2.control-label(for='inputTripDistance') Trip Distance:
+            .col-sm-6
+                input#inputTripDistance.form-control(type='text', value='#{order.trip_distance}', name='trip_distance')
+        .form-group
+            label.col-sm-2.control-label(for='inputRemarks') Remarks:
+            .col-sm-6
+                input#inputRemarks.form-control(type='text', value='#{order.remarks}', name='remarks')
+        .form-actions
+            .col-sm-offset-2.col-sm-6
+                button#btnSubmit.btn.btn-primary.btn-space(type='submit') Update
+                button#btnCancel.btn.btn-default.btn-space(type='button', onclick='goBack') Cancel
