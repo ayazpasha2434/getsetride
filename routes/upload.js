@@ -4,17 +4,12 @@
 
 var express = require('express')
     , router = express.Router()
-    , multer = require('multer')
     , formidable = require('formidable')
     , http = require('http')
     , util = require('util')
     , fs = require('fs')
     , sys = require('sys')
     , exec = require('child_process').exec;
-
-var uploading = multer({
-        dest: __dirname + '/public/uploads/'
-    });
 
 /*router.post('/upload', uploading, function(req, res) {
 
@@ -95,10 +90,5 @@ router.route('/')
         });
 
     })
-
-/*router.route('/', function(req, res) {
-
-    res.render('/upload/index');
-});*/
 
 module.exports = router;
