@@ -145,7 +145,7 @@ router.get('/:id/edit', function(req, res) {
                 //HTML response will render the 'edit.jade' template
                 html: function(){
                     res.render('order/edit', {
-                        title: 'Order' + order._id,
+                        title: 'Order ' + order._id,
                         "date" : order.date,
                         "order" : order,
                         "rider_name" : order.rider_name

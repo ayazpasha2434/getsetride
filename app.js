@@ -9,6 +9,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var order = require('./routes/order');
+var upload = require('./routes/upload');
 //var rider = require('./routes/rider');
 var reviews = require('./routes/review');
 var sittings = require('./routes/sitting');
@@ -31,9 +32,15 @@ app.use('/', routes);
 app.use('/users', users);
 
 app.use('/order', order);
+app.use('/admin', upload);
 //app.use('/rider', rider);
 app.use('/reviews', reviews);
 app.use('/sittings', sittings);
+
+app.get('/login', function(req, res) {
+
+  res.render('order/login', { title: 'Login' });
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

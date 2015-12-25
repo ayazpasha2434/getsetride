@@ -2,7 +2,7 @@ extends layout
 block orders
     h1.
         #{title}
-    table.table.table-striped.table-hover
+    table.table.table-hover
         thead
             tr
                 th #
@@ -21,7 +21,7 @@ block orders
             each order, i in orders
                 if order.order_status == 'Done' || order.order_status == 'done'
                     tr.success
-                        td= 40 * page + (i + 1)
+                        td= 20 * page + (i + 1)
                         td= order.date
                         td
                             a(href="/order/" + order._id + "/edit")= order.job_id
@@ -36,7 +36,7 @@ block orders
                         td= order.remarks
                 else if order.order_status == 'Cancelled' || order.order_status == 'cancelled' || order.order_status == 'canceled'
                     tr.danger
-                        td= 40 * page + (i + 1)
+                        td= 20 * page + (i + 1)
                         td= order.date
                         td
                             a(href="/order/" + order._id + "/edit")= order.job_id

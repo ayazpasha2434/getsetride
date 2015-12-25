@@ -16,6 +16,7 @@ html
     script(src='/js/jquery.js')
     script(src='/js/bootstrap.min.js')
     script(src='//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js')
+    script(src='//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.2.8/jquery.form-validator.min.js')
     script.
       var dataArr = {
         'Sujith': '9738166982',
@@ -42,6 +43,10 @@ html
       ];
 
       $(document).ready(function () {
+
+        $.validate({
+          modules: 'file, toggleDisabled'
+        });
 
         $(".inputRiderName").select2({
           data: data,

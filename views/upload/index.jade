@@ -1,0 +1,26 @@
+extends layout
+block orders
+    p.bg-info(style='padding-top: 10px;padding-bottom: 10px;padding-left: 10px;')
+        |"date","job_id","customer_name","phone_number","delivery_timing","hub_name","rider_name","rider_number","order_status","trip_distance","remarks"
+        |"12/11/2015","346968","Venkatesh Nallaballe","9036130120","8:00 AM","Domlur","Sujith","8884445136","Cancelled","27","Cust cancelled going out of station"
+        |"12/11/2015","343680","Ashutosh Pandey","9810923438","8:30 AM","JP Nagar","Jagan","8884449812","Reschedule","","12th Dec @ 08:00AM"
+
+    p.bg-warning(style='padding-top: 10px;padding-bottom: 10px;padding-left: 10px;')
+        | WARNING!! You should upload only .csv files with format as shown above. The first line is header & is mandatory & in same order.
+
+    if success == 'true'
+        .alert.alert-success
+            | #{message}
+    else if success == 'false'
+        .alert.alert-danger
+            | #{message}
+        
+    form#uploadForm.form-horizontal(action='/admin', method='POST', enctype='multipart/form-data')
+        .form-group
+            label.col-sm-2.control-label(for='inputFile') Select the .csv to upload:
+            .col-sm-6
+                input#inputFile.form-control(type='file', name='dataFile', data-validation="mime size", data-validation-allowing="csv", data-validation-max-size="2M")
+        .form-actions
+            .col-sm-offset-2.col-sm-6
+                button#btnSubmit.btn.btn-primary.btn-space(type='submit') Upload
+                button#btnCancel.btn.btn-default.btn-space(type='button', onclick='goBack') Cancel
