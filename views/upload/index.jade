@@ -14,7 +14,7 @@ block orders
     else if success == 'false'
         .alert.alert-danger
             | #{message}
-        
+
     form#uploadForm.form-horizontal(action='/admin', method='POST', enctype='multipart/form-data')
         .form-group
             label.col-sm-2.control-label(for='inputFile') Select the .csv to upload:

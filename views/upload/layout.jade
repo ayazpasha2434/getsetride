@@ -2,6 +2,13 @@
 extends ../layout
 block content
     body
+        script.
+            $(document).ready(function () {
+                $.validate({
+                    modules: 'file, toggleDisabled'
+                });
+            })
+
         nav.navbar.navbar-default.navbar-fixed-top
             .container-fluid
                 // Brand and toggle get grouped for better mobile display
