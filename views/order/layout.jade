@@ -11,7 +11,7 @@ block content
                         span.icon-bar
                         span.icon-bar
                         span.icon-bar
-                    a.navbar-brand(href="#") Get Set Ride
+                    a.navbar-brand(href="/order") Get Set Ride
                 // Collect the nav links, forms, and other content for toggling
                 #bs-example-navbar-collapse-1.collapse.navbar-collapse
                     ul.nav.navbar-nav
@@ -19,9 +19,9 @@ block content
                             a(href="/order/new")
                                 | Add
                                 span.sr-only (current)
-                    form.navbar-form.navbar-left(role="search")
+                    form.navbar-form.navbar-left(role="search",action='/order',method='GET',name='searchorder',enctype='application/x-www-form-urlencoded')
                         .form-group
-                            input.form-control.btn-space(type="text", placeholder="Search")
+                            input.form-control.btn-space(type="text", name="searchQuery", placeholder="Search")
                         button.btn.btn-default.btn-space(type="submit") Search
                     ul.nav.navbar-nav.navbar-right
                         li.dropdown
@@ -33,6 +33,8 @@ block content
                                     a(href="/order") Orders
                                 li
                                     a(href="/rider") Riders
+                                li
+                                    a(href="/admin") Upload
                                 li.divider(role="separator")
                                 li
                                     a(href="#") My Account

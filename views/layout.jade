@@ -9,12 +9,14 @@ html
     meta(name='author', content='')
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/css/datepicker.css')
     link(rel='stylesheet', href='/css/4-col-portfolio.css')
     link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css')
     script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
     script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
     script(src='/js/jquery.js')
     script(src='/js/bootstrap.min.js')
+    script(src='/js/bootstrap-datepicker.js')
     script(src='//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js')
     script(src='//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.2.8/jquery.form-validator.min.js')
     script.
@@ -44,9 +46,13 @@ html
 
       $(document).ready(function () {
 
-        //$.validate({
-        //  modules: 'file, toggleDisabled'
-        //});
+        $(function () {
+          $('#datetimepicker1').datepicker();
+        });
+
+        $.validate({
+          modules: 'file'
+        });
 
         $(".inputRiderName").select2({
           data: data,

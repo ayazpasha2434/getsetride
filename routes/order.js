@@ -17,26 +17,45 @@ router.route('/')
     //GET all babysitter
     .get(function(req, res, next) {
 
+        console.log(JSON.stringify(req.params) + ' ' +JSON.stringify(req.body)+ ' ' +JSON.stringify(req.query));
+
+        var date = new Date();
+        var today = date.getDate()+"/"+(date.getMonth() + 1)+"/"+date.getFullYear();
+
+        var searchQuery = req.query.searchQuery || today;
+
         var perPage = 20
             , page = req.param('page') > 0 ? req.param('page') : 0
 
-        mongoose.model('Order')
+        var query = mongoose.model('Order')
             .find()
             .select('date job_id customer_name phone_number delivery_timing hub_name rider_name rider_number order_status trip_distance remarks')
             .limit(perPage)
             .skip(perPage * page)
-            .sort({name: 'asc'})
-            .exec(function (err, orders) {
+            .sort({name: 'asc'});
 
-                console.log(orders);
-                mongoose.model('Order').count().exec(function (err, count) {
-                    res.render('order/index', {
-                        orders: orders
-                        , page: page
-                        , pages: count / perPage
-                    })
+        if(searchQuery !== undefined && searchQuery !== null && searchQuery !== "") {
+
+            console.log(decodeURIComponent(searchQuery));
+            query = mongoose.model('Order')
+                .find({date: decodeURIComponent(searchQuery)})
+                .select('date job_id customer_name phone_number delivery_timing hub_name rider_name rider_number order_status trip_distance remarks')
+                .limit(perPage)
+                .skip(perPage * page)
+                .sort({name: 'asc'});
+        }
+
+        query.exec(function (err, orders) {
+
+            console.log(orders);
+            mongoose.model('Order').count().exec(function (err, count) {
+                res.render('order/index', {
+                    orders: orders
+                    , page: page
+                    , pages: count / perPage
                 })
-            });
+            })
+        });
 
         res.locals.createPagination = function (pages, page) {
             var url = require('url')
@@ -271,16 +290,6 @@ router.delete('/:id/edit', function (req, res){
             });
         }
     });
-});
-
-router.get('/login', function(req, res) {
-
-    res.render('order/login', { title: 'Login' });
-});
-
-router.get('/upload', function(req, res) {
-
-    res.render('order/upload', { title: 'Upload' });
 });
 
 module.exports = router;
