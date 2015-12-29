@@ -48,13 +48,14 @@ router.route('/')
         query.exec(function (err, orders) {
 
             console.log(orders);
-            mongoose.model('Order').count().exec(function (err, count) {
+            mongoose.model('Order').find({date: decodeURIComponent(searchQuery)}).count().exec(function (err, count) {
                 res.render('order/index', {
                     orders: orders
                     , page: page
                     , pages: count / perPage
                 })
             })
+
         });
 
         res.locals.createPagination = function (pages, page) {

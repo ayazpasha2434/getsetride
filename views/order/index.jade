@@ -2,6 +2,7 @@ extends layout
 block orders
     h1.
         #{title}
+
     table.table.table-hover
         thead
             tr
@@ -64,6 +65,10 @@ block orders
                         td= order.order_status
                         td= order.trip_distance
                         td= order.remarks
+    if orders.length == 0
+        .col-xs-12.col-md-8
+            .alert.alert-danger(role='alert')
+                | No records found
     if (pages > 1)
         ul.pagination
             != createPagination(pages, page)
